@@ -20,7 +20,9 @@ public class CrudRepository<T extends Identifiable> extends SimpleJpaRepository<
 
     public ArrayList<T> getAll(){
         var result = new ArrayList<T>();
-        findAll().forEach(result::add);
+        findAll().forEach( value -> {
+            result.add(value);
+        });
         return result;
 
     }

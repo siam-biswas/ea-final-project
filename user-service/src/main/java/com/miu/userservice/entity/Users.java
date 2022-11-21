@@ -1,8 +1,11 @@
 package com.miu.userservice.entity;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Data
 public class Users implements Identifiable{
 
     @Id
@@ -10,6 +13,7 @@ public class Users implements Identifiable{
     @Column(name = "id", nullable = false)
     private Long id;
 
+    private String userName;
     private String firstName;
     private String lastName;
     private String email;
