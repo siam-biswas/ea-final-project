@@ -1,16 +1,17 @@
 package com.miu.userservice.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
 public class Users implements Identifiable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String userName;
@@ -18,8 +19,9 @@ public class Users implements Identifiable{
     private String lastName;
     private String email;
     private String phone;
-    private String password;
 
+    @JsonIgnore
+    private String password;
 
     @Override
     public Long getId() {

@@ -1,8 +1,6 @@
-package com.miu.userservice.repository;
+package com.comments.repository;
 
-import com.miu.userservice.entity.Identifiable;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import com.comments.entity.Identifiable;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
@@ -20,9 +18,7 @@ public class CrudRepository<T extends Identifiable> extends SimpleJpaRepository<
 
     public ArrayList<T> getAll(){
         var result = new ArrayList<T>();
-        findAll().forEach( value -> {
-            result.add(value);
-        });
+        findAll().forEach(result::add);
         return result;
 
     }
@@ -50,7 +46,12 @@ public class CrudRepository<T extends Identifiable> extends SimpleJpaRepository<
     }
 
     public Boolean create(T data) {
-        save(data);
-        return true;
+        if (!get(data.getId()).isPresent()){
+            save(data);
+            return true;
+        }else{
+            return false;
+        }
+
     }
 }
