@@ -7,6 +7,7 @@
 		<module>user-service</module>
 		<module>configuration-server</module>
         <module>authentication-service</module>
+        <module>rating-service</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>

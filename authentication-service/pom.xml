@@ -9,4 +9,7 @@
     <artifactId>authentication-service</artifactId>
     <name>Archetype - authentication-service</name>
     <url>http://maven.apache.org</url>
+    <dependencies>
+
+    </dependencies>
 </project>

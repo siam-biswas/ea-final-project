@@ -1,0 +1,1 @@
+INSERT INTO ratings(user_id, content_id, content_type, value) VALUES (1,1,0,5);
