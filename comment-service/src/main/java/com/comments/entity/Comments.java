@@ -1,24 +1,24 @@
 package com.comments.entity;
 
 
+import com.comments.dto.UserDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
-public class Comments implements Identifiable {
+public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String comment;
 
-    @Override
-    public Long getId() {
-        return id;
-    }
+    @Transient
+    private UserDTO user;
+
+    @JsonIgnore
+    private Long userId;
+
 }
