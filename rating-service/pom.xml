@@ -25,5 +25,10 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>3.1.5</version>
         </dependency>
+
     </dependencies>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 </project>

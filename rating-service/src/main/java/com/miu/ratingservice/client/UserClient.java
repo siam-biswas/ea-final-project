@@ -16,6 +16,6 @@ public interface UserClient {
     List<UserDTO> getAll();
 
     @GetMapping("/users/{id}")
-    UserDTO get(@PathVariable Long id);
+    UserDTO get(@PathVariable(value = "id") Long id);
 
 }

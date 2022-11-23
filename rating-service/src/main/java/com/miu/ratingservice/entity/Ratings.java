@@ -21,8 +21,8 @@ public class Ratings implements Identifiable{
     private Integer contentType;
     private Integer value;
 
-    @Transient
-    private UserDTO user;
+//    @Transient
+//    private UserDTO user;
 
 
     @Override
