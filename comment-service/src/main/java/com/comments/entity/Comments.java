@@ -18,7 +18,6 @@ public class Comments {
     @Transient
     private UserDTO user;
 
-    @JsonIgnore
     private Long userId;
 
 }

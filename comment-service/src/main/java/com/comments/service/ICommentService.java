@@ -11,4 +11,9 @@ public interface ICommentService {
 
     List<Comments> getAllComments();
 
+    Comments AddComment(Comments comments);
+
+    void DeleteComment(long id);
+
+    Comments UpdateComment(Comments comments);
 }

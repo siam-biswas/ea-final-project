@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@Entity(name = "users")
 @Data
 public class Users implements Identifiable{
 

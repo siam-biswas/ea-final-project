@@ -13,4 +13,5 @@ public interface CommentRepository extends CrudRepository<Comments,Long> {
 
      List<Comments> findAll();
      Comments findAllById(Long id);
+
 }

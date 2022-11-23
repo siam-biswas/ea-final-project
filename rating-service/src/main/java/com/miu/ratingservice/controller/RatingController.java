@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/ratings")
+@RequestMapping("/ratings")
 public class RatingController extends CrudController<Ratings, RatingService> {
 
     private final UserClient userClient;

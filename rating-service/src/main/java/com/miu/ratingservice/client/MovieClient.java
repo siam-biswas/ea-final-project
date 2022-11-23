@@ -11,7 +11,7 @@ import java.util.List;
 
 
 
-@FeignClient(name = "MOVIE-SERVICE",url = "http://localhost:8082")
+@FeignClient(name = "MOVIE-SERVICE")
 public interface MovieClient {
 
     @GetMapping("/movies")

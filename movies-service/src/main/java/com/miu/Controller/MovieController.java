@@ -6,7 +6,7 @@ import com.miu.Service.Impl.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("movies")
+@RequestMapping("/movies")
 @RestController
 public class MovieController {
 

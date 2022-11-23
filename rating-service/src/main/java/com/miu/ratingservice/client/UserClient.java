@@ -9,7 +9,7 @@ import java.util.List;
 
 
 
-@FeignClient(name = "USER-SERVICE",url = "http://localhost:8081/api/v1")
+@FeignClient(name = "USER-SERVICE")
 public interface UserClient {
 
     @GetMapping("/users")

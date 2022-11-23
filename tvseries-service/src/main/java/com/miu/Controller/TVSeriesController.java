@@ -6,7 +6,7 @@ import com.miu.Service.Impl.TVSeriesServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("tvseries")
+@RequestMapping("/tvseries")
 @RestController
 public class TVSeriesController {
     @Autowired

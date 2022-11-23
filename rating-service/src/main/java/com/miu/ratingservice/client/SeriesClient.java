@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 
-@FeignClient(name = "TVSERIES-SERVICE",url = "http://localhost:8085")
+@FeignClient(name = "TVSERIES-SERVICE")
 public interface SeriesClient {
 
     @GetMapping("/tvseries")
