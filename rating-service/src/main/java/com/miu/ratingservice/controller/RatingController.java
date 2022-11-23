@@ -1,6 +1,9 @@
 package com.miu.ratingservice.controller;
 
+import com.miu.ratingservice.client.MovieClient;
+import com.miu.ratingservice.client.SeriesClient;
 import com.miu.ratingservice.client.UserClient;
+import com.miu.ratingservice.entity.ContentType;
 import com.miu.ratingservice.entity.Ratings;
 import com.miu.ratingservice.service.RatingService;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +20,14 @@ import java.util.Optional;
 public class RatingController extends CrudController<Ratings, RatingService> {
 
     private final UserClient userClient;
+    private final MovieClient movieClient;
+    private final SeriesClient seriesClient;
 
-    public RatingController(RatingService service, UserClient userClient) {
+    public RatingController(RatingService service, UserClient userClient, MovieClient movieClient, SeriesClient seriesClient) {
         super(service);
         this.userClient = userClient;
+        this.movieClient = movieClient;
+        this.seriesClient = seriesClient;
     }
 
 
@@ -31,6 +38,18 @@ public class RatingController extends CrudController<Ratings, RatingService> {
         var result = service.getAll().stream().map( value ->{
             var user =  userClient.get(value.getUserId());
             value.setUser(user);
+
+            if (value.getContent().getContentType() == ContentType.movie){
+                var movie = movieClient.get(value.getContent().getContentId());
+                value.setMovie(movie);
+            }
+
+            if (value.getContent().getContentType() == ContentType.series){
+                var series = seriesClient.get(value.getContent().getContentId());
+                value.setSeries(series);
+            }
+
+
             return value;
         }).toList();
 
@@ -44,6 +63,17 @@ public class RatingController extends CrudController<Ratings, RatingService> {
         Optional<Ratings> data = service.get(id).map( value ->{
             var user =  userClient.get(value.getUserId());
             value.setUser(user);
+
+            if (value.getContent().getContentType() == ContentType.movie){
+                var movie = movieClient.get(value.getContent().getContentId());
+                value.setMovie(movie);
+            }
+
+            if (value.getContent().getContentType() == ContentType.series){
+                var series = seriesClient.get(value.getContent().getContentId());
+                value.setSeries(series);
+            }
+
             return value;
         });
 
