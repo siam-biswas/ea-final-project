@@ -4,6 +4,8 @@ package com.miu.Entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,6 +19,11 @@ public class TVSeries {
     String title;
     int numberOfSeasons;
     int numberOfEpisodes;
+    int durationInMinutes;
     String genre;
+    String director;
+    LocalDate releaseDate;
 
+    @OneToMany(mappedBy = "series")
+    List<ActorsSeries> actorsSeries;
 }

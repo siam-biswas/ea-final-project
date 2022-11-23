@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Data
 public class SeriesDTO {
@@ -13,5 +14,8 @@ public class SeriesDTO {
     String title;
     int numberOfSeasons;
     int numberOfEpisodes;
+    int durationInMinutes;
     String genre;
+    String director;
+    LocalDate releaseDate;
 }
