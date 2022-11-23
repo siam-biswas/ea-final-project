@@ -15,9 +15,4 @@ public class RatingServiceApplication {
         SpringApplication.run(RatingServiceApplication.class,args);
     }
 
-    @Bean
-    @LoadBalanced
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 }

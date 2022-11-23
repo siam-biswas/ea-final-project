@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -20,7 +21,7 @@ public class CommentService implements ICommentService {
     }
 
     @Override
-    public Comments getCommentsById(long id) {
+    public Optional<Comments> getCommentsById(long id) {
         return commentRepository.findAllById(id);
     }
 

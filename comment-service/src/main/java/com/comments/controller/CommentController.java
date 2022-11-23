@@ -1,8 +1,11 @@
 package com.comments.controller;
 
+import com.comments.client.MovieClient;
+import com.comments.client.SeriesClient;
 import com.comments.client.UserClient;
 import com.comments.dto.UserDTO;
 import com.comments.entity.Comments;
+import com.comments.entity.ContentType;
 import com.comments.service.CommentService;
 import jdk.dynalink.linker.LinkerServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +19,36 @@ import java.util.Optional;
 @RequestMapping("/comments")
 public class CommentController {
 
-    private final CommentService commentService;
+    private final CommentService service;
     private final UserClient userClient;
 
-    public CommentController(CommentService commentService, UserClient userClient) {
-        this.commentService = commentService;
-        this.userClient = userClient;
+    private final MovieClient movieClient;
+    private final SeriesClient seriesClient;
 
+    public CommentController(CommentService commentService, UserClient userClient, MovieClient movieClient, SeriesClient seriesClient) {
+        this.service = commentService;
+        this.userClient = userClient;
+        this.movieClient = movieClient;
+        this.seriesClient = seriesClient;
     }
 
     @GetMapping
     public ResponseEntity<List<Comments>> getAllComments() {
-
-        var result = commentService.getAllComments().stream().map(value -> {
-            var user = userClient.get(value.getUserId());
+        var result = service.getAllComments().stream().map( value ->{
+            var user =  userClient.get(value.getUserId());
             value.setUser(user);
+
+            if (value.getContent().getContentType() == ContentType.movie){
+                var movie = movieClient.get(value.getContent().getContentId());
+                value.setMovie(movie);
+            }
+
+            if (value.getContent().getContentType() == ContentType.series){
+                var series = seriesClient.get(value.getContent().getContentId());
+                value.setSeries(series);
+            }
+
+
             return value;
         }).toList();
 
@@ -38,25 +56,44 @@ public class CommentController {
     }
 
     @GetMapping("/{id}")
-    public Comments getCommentsById(@PathVariable(value = "id") Long id) {
-        Comments data = commentService.getCommentsById(id);
-        UserDTO userDTO = userClient.get(data.getUserId());
-        data.setUser(userDTO);
-        return data;
+    public ResponseEntity<Comments> getCommentsById(@PathVariable(value = "id") Long id) {
+
+        Optional<Comments> data = service.getCommentsById(id).map( value ->{
+            var user =  userClient.get(value.getUserId());
+            value.setUser(user);
+
+            if (value.getContent().getContentType() == ContentType.movie){
+                var movie = movieClient.get(value.getContent().getContentId());
+                value.setMovie(movie);
+            }
+
+            if (value.getContent().getContentType() == ContentType.series){
+                var series = seriesClient.get(value.getContent().getContentId());
+                value.setSeries(series);
+            }
+
+            return value;
+        });
+
+        if (data.isPresent()) {
+            return ResponseEntity.ok(data.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/add")
     public Comments AddComment(@RequestBody Comments comments) {
-        return commentService.AddComment(comments);
+        return service.AddComment(comments);
     }
 
     @DeleteMapping("/delete/{id}")
     public void DeleteComment(@PathVariable Long id) {
-        commentService.DeleteComment(id);
+        service.DeleteComment(id);
     }
 
     @PostMapping("/update")
     public Comments UpdateComment(@RequestBody Comments comments) {
-        return commentService.UpdateComment(comments);
+        return service.UpdateComment(comments);
     }
 }

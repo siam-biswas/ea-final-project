@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface CommentRepository extends CrudRepository<Comments,Long> {
 
      List<Comments> findAll();
-     Comments findAllById(Long id);
+     Optional<Comments> findAllById(Long id);
 
 }

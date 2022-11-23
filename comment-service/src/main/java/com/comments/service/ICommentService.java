@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ICommentService {
 
-    Comments getCommentsById(long id);
+    Optional<Comments> getCommentsById(long id);
 
     List<Comments> getAllComments();
 

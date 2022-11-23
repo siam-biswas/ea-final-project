@@ -15,11 +15,5 @@ public class CommentServiceApplication {
         SpringApplication.run(CommentServiceApplication.class, args);
     }
 
-    @Bean
-    @LoadBalanced
-    public RestTemplate getRestTemplate() {
-        return new RestTemplate();
-    }
-
 }
 
