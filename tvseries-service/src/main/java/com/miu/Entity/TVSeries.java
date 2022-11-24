@@ -1,6 +1,7 @@
 package com.miu.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,5 +26,6 @@ public class TVSeries {
     LocalDate releaseDate;
 
     @OneToMany(mappedBy = "series" , fetch = FetchType.EAGER)
+            @JsonIgnore
     List<ActorsSeries> actorsSeries;
 }

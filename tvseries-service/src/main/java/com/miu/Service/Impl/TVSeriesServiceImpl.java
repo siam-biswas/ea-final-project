@@ -1,24 +1,27 @@
 package com.miu.Service.Impl;
 
 
+
 import com.miu.Entity.TVSeries;
 import com.miu.Enum.FilterType;
+import com.miu.Repository.ActorSeriesRepo;
 import com.miu.Repository.TVSeriesRepo;
 import com.miu.Service.TVSeriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 public class TVSeriesServiceImpl implements TVSeriesService {
 
     @Autowired
     TVSeriesRepo tvSeriesRepo;
+    @Autowired
+    ActorSeriesRepo actorSeriesRepo;
 
     @Override
     public TVSeries findById(int seriesId) {
@@ -54,6 +57,11 @@ public class TVSeriesServiceImpl implements TVSeriesService {
                 return tvSeriesRepo.findAllByDirector(value);
             case DURATION:
                 return tvSeriesRepo.findAllByDurationInMinutes(Integer.parseInt(value));
+            case ACTOR:
+                return actorSeriesRepo.findAllByActor_FirstName(value)
+                        .stream()
+                        .map(x -> x.getSeries())
+                        .collect(Collectors.toList());
             default:
                 return null;
         }

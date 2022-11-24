@@ -1,10 +1,12 @@
 package com.miu.Entity;
 
-import lombok.Data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+
 
 
 @Data
@@ -22,7 +24,8 @@ public class Movie {
     String director;
     LocalDate releaseDate;
 
-    @OneToMany(mappedBy = "movie" ,fetch = FetchType.EAGER)
-    List<ActorsMovies> actorsSeries;
+    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
+    @JsonIgnore
+    List<ActorsMovies> actorsMovies;
 
 }

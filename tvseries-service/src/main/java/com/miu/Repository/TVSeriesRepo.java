@@ -1,9 +1,9 @@
 package com.miu.Repository;
 
+
 import com.miu.Entity.TVSeries;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,6 +15,5 @@ public interface TVSeriesRepo  extends CrudRepository<TVSeries , Integer> {
     List<TVSeries> findAllByGenre(String genre);
     List<TVSeries> findAllByDirector(String director);
     List<TVSeries> findAllByDurationInMinutes(int minutes);
-//    List<TVSeries> findAllByActorsSeriesIsContaining
 
 }

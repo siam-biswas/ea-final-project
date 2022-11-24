@@ -10,11 +10,12 @@ import java.util.List;
 
 @Repository
 public interface MovieRepo extends CrudRepository<Movie, Integer> {
-    Movie findMovieById(int movieId);
-
     List<Movie> findAllByGenre(String genre);
+
     List<Movie> findAllByDirector(String director);
+
     List<Movie> findAllByDurationInMinutes(int minutes);
+
     List<Movie> findAllByReleaseDate(LocalDate year);
 
 }
