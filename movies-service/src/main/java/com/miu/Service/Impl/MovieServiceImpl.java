@@ -1,10 +1,16 @@
 package com.miu.Service.Impl;
 
 import com.miu.Entity.Movie;
+import com.miu.Enum.FilterType;
 import com.miu.Repository.MovieRepo;
 import com.miu.Service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Locale;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -31,4 +37,24 @@ public class MovieServiceImpl implements MovieService {
     public void addMovie(Movie movie) {
         movieRepo.save(movie);
     }
+
+    @Override
+    public List<Movie> filterMovie(FilterType filterType, String value) {
+        switch (filterType) {
+            case GENRE:
+                return movieRepo.findAllByGenre(value);
+            case RELEASE_DATE:
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                formatter = formatter.withLocale(Locale.US);
+                LocalDate date = LocalDate.parse(value, formatter);
+                return movieRepo.findAllByReleaseDate(date);
+            case DIRECTOR:
+                return movieRepo.findAllByDirector(value);
+            case DURATION:
+                return movieRepo.findAllByDurationInMinutes(Integer.parseInt(value));
+            default:
+                return null;
+        }
+    }
+
 }

@@ -24,6 +24,6 @@ public class TVSeries {
     String director;
     LocalDate releaseDate;
 
-    @OneToMany(mappedBy = "series" ,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "series" , fetch = FetchType.EAGER)
     List<ActorsSeries> actorsSeries;
 }

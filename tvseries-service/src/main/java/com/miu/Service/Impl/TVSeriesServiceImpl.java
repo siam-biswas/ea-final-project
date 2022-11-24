@@ -40,23 +40,23 @@ public class TVSeriesServiceImpl implements TVSeriesService {
         tvSeriesRepo.save(series);
     }
     @Override
-    public List<TVSeries> filterSeries(int filterType, String value) {
+    public List<TVSeries> filterSeries(FilterType filterType, String value) {
 
         switch (filterType) {
-            case 1:
+            case GENRE:
                 return tvSeriesRepo.findAllByGenre(value);
-            case 2:
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+            case RELEASE_DATE:
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 formatter = formatter.withLocale(Locale.US);
                 LocalDate date = LocalDate.parse(value, formatter);
                 return tvSeriesRepo.findAllByReleaseDate(date);
-            case 3:
+            case DIRECTOR:
                 return tvSeriesRepo.findAllByDirector(value);
-            case 4:
+            case DURATION:
                 return tvSeriesRepo.findAllByDurationInMinutes(Integer.parseInt(value));
+            default:
+                return null;
         }
-
-        return null;
     }
 
 

@@ -15,5 +15,6 @@ public interface TVSeriesRepo  extends CrudRepository<TVSeries , Integer> {
     List<TVSeries> findAllByGenre(String genre);
     List<TVSeries> findAllByDirector(String director);
     List<TVSeries> findAllByDurationInMinutes(int minutes);
+//    List<TVSeries> findAllByActorsSeriesIsContaining
 
 }

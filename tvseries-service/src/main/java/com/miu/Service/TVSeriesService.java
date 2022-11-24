@@ -11,6 +11,6 @@ public interface TVSeriesService {
     void deleteById(int seriesId);
     void Update(TVSeries series);
     void addTVSeries(TVSeries series);
-    List<TVSeries> filterSeries(int filterType , String value);
+    List<TVSeries> filterSeries(FilterType filterType , String value);
 
 }
