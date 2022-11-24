@@ -15,5 +15,5 @@ public interface MovieService {
 
     void addMovie(Movie movie);
 
-    List<Movie> filterMovie(FilterType filterType,  String value);
+    List<Movie> filterMovie(FilterType filterType, String value);
 }

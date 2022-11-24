@@ -1,8 +1,11 @@
 package com.miu.Entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
+@Data
 public class ActorsSeries {
     @EmbeddedId
     ActorsSeriesId id;

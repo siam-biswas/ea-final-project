@@ -2,6 +2,7 @@ package com.miu.Service.Impl;
 
 import com.miu.Entity.Movie;
 import com.miu.Enum.FilterType;
+import com.miu.Repository.ActorMovieRepo;
 import com.miu.Repository.MovieRepo;
 import com.miu.Service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +12,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieServiceImpl implements MovieService {
 
     @Autowired
     MovieRepo movieRepo;
+    @Autowired
+    ActorMovieRepo actorMovieRepo;
 
     @Override
     public Movie findById(int movieId) {
-        return movieRepo.findMovieById(movieId);
+        return movieRepo.findById(movieId).get();
     }
-
     @Override
     public void deleteById(int movieId) {
         movieRepo.deleteById(movieId);
@@ -52,9 +55,15 @@ public class MovieServiceImpl implements MovieService {
                 return movieRepo.findAllByDirector(value);
             case DURATION:
                 return movieRepo.findAllByDurationInMinutes(Integer.parseInt(value));
+            case ACTOR:
+                return actorMovieRepo.findAllByActor_FirstName(value)
+                        .stream()
+                        .map(x -> x.getMovie())
+                        .collect(Collectors.toList());
             default:
                 return null;
         }
     }
+
 
 }
