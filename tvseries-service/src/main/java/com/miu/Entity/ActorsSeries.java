@@ -8,11 +8,11 @@ public class ActorsSeries {
     ActorsSeriesId id;
 
     @MapsId("actorId")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     Actor actor;
 
     @MapsId("seriesId")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     TVSeries series;
 
 }

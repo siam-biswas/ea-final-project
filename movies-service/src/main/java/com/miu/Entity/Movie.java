@@ -22,7 +22,7 @@ public class Movie {
     String director;
     LocalDate releaseDate;
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie" ,fetch = FetchType.EAGER)
     List<ActorsMovies> actorsSeries;
 
 }

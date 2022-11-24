@@ -12,7 +12,7 @@ public class Actor {
     String firstName;
     String lastName;
 
-    @OneToMany(mappedBy = "actor")
+    @OneToMany(mappedBy = "actor", fetch = FetchType.EAGER)
     List<ActorsSeries> actorsSeries;
 
 
