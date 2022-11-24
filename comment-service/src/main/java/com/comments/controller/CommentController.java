@@ -3,12 +3,9 @@ package com.comments.controller;
 import com.comments.client.MovieClient;
 import com.comments.client.SeriesClient;
 import com.comments.client.UserClient;
-import com.comments.dto.UserDTO;
 import com.comments.entity.Comments;
 import com.comments.entity.ContentType;
 import com.comments.service.CommentService;
-import jdk.dynalink.linker.LinkerServices;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,16 +31,16 @@ public class CommentController {
 
     @GetMapping
     public ResponseEntity<List<Comments>> getAllComments() {
-        var result = service.getAllComments().stream().map( value ->{
-            var user =  userClient.get(value.getUserId());
+        var result = service.getAllComments().stream().map(value -> {
+            var user = userClient.get(value.getUserId());
             value.setUser(user);
 
-            if (value.getContent().getContentType() == ContentType.movie){
+            if (value.getContent().getContentType() == ContentType.movie) {
                 var movie = movieClient.get(value.getContent().getContentId());
                 value.setMovie(movie);
             }
 
-            if (value.getContent().getContentType() == ContentType.series){
+            if (value.getContent().getContentType() == ContentType.series) {
                 var series = seriesClient.get(value.getContent().getContentId());
                 value.setSeries(series);
             }
@@ -58,16 +55,16 @@ public class CommentController {
     @GetMapping("/{id}")
     public ResponseEntity<Comments> getCommentsById(@PathVariable(value = "id") Long id) {
 
-        Optional<Comments> data = service.getCommentsById(id).map( value ->{
-            var user =  userClient.get(value.getUserId());
+        Optional<Comments> data = service.getCommentsById(id).map(value -> {
+            var user = userClient.get(value.getUserId());
             value.setUser(user);
 
-            if (value.getContent().getContentType() == ContentType.movie){
+            if (value.getContent().getContentType() == ContentType.movie) {
                 var movie = movieClient.get(value.getContent().getContentId());
                 value.setMovie(movie);
             }
 
-            if (value.getContent().getContentType() == ContentType.series){
+            if (value.getContent().getContentType() == ContentType.series) {
                 var series = seriesClient.get(value.getContent().getContentId());
                 value.setSeries(series);
             }
@@ -83,8 +80,28 @@ public class CommentController {
     }
 
     @PostMapping("/add")
-    public Comments AddComment(@RequestBody Comments comments) {
-        return service.AddComment(comments);
+    public ResponseEntity<Object> AddComment(@RequestBody Comments comments) {
+        Optional<Comments> data = Optional.ofNullable(service.AddComment(comments)).map(value -> {
+            var user = userClient.get(value.getUserId());
+            value.setUser(user);
+
+            if (value.getContent().getContentType() == ContentType.movie) {
+                var movie = movieClient.get(value.getContent().getContentId());
+                value.setMovie(movie);
+            }
+
+            if (value.getContent().getContentType() == ContentType.series) {
+                var series = seriesClient.get(value.getContent().getContentId());
+                value.setSeries(series);
+            }
+            return value;
+        });
+
+        if (data.isPresent()) {
+            return ResponseEntity.ok(data.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/delete/{id}")
@@ -93,7 +110,27 @@ public class CommentController {
     }
 
     @PostMapping("/update")
-    public Comments UpdateComment(@RequestBody Comments comments) {
-        return service.UpdateComment(comments);
+    public ResponseEntity<Object> UpdateComment(@RequestBody Comments comments) {
+        Optional<Comments> data = Optional.ofNullable(service.UpdateComment(comments)).map(value -> {
+            var user = userClient.get(value.getUserId());
+            value.setUser(user);
+
+            if (value.getContent().getContentType() == ContentType.movie) {
+                var movie = movieClient.get(value.getContent().getContentId());
+                value.setMovie(movie);
+            }
+
+            if (value.getContent().getContentType() == ContentType.series) {
+                var series = seriesClient.get(value.getContent().getContentId());
+                value.setSeries(series);
+            }
+            return value;
+        });
+
+        if (data.isPresent()) {
+            return ResponseEntity.ok(data.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

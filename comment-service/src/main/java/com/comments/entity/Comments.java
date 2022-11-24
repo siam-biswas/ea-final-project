@@ -18,8 +18,11 @@ public class Comments {
     private Long id;
     private String comment;
 
-    @JsonIgnore
     private Long userId;
+
+    private Long movieId;
+
+    private Long seriesId;
 
     @Embedded
     private Content content;
