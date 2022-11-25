@@ -11,13 +11,13 @@ import java.util.List;
 public class Actor {
 
     @Id
-    int id;
+    Long id;
 
     String firstName;
     String lastName;
 
     @OneToMany(mappedBy = "actor", fetch = FetchType.EAGER)
-            @JsonIgnore
+    @JsonIgnore
     List<ActorsSeries> actorsSeries;
 
 

@@ -1,13 +1,13 @@
 package com.miu.Service.Impl;
 
 
-
 import com.miu.Entity.TVSeries;
 import com.miu.Enum.FilterType;
 import com.miu.Repository.ActorSeriesRepo;
 import com.miu.Repository.TVSeriesRepo;
 import com.miu.Service.TVSeriesService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -18,21 +18,27 @@ import java.util.stream.Collectors;
 @Service
 public class TVSeriesServiceImpl implements TVSeriesService {
 
-    @Autowired
-    TVSeriesRepo tvSeriesRepo;
-    @Autowired
-    ActorSeriesRepo actorSeriesRepo;
+    private final ActorSeriesRepo actorSeriesRepo;
+    private final RabbitTemplate rabbitTemplate;
+    private final Queue deleteSeries;
+    final TVSeriesRepo tvSeriesRepo;
+    public TVSeriesServiceImpl(RabbitTemplate rabbitTemplate, Queue deleteSeries, TVSeriesRepo tvSeriesRepo, ActorSeriesRepo actorSeriesRepo) {
+        this.rabbitTemplate = rabbitTemplate;
+        this.deleteSeries = deleteSeries;
+        this.tvSeriesRepo = tvSeriesRepo;
+        this.actorSeriesRepo = actorSeriesRepo;
+    }
 
     @Override
-    public TVSeries findById(int seriesId) {
+    public TVSeries findById(Long seriesId) {
+        rabbitTemplate.convertAndSend("deleteSeries",seriesId);
         return tvSeriesRepo.findTVSeriesById(seriesId);
     }
 
     @Override
-    public void deleteById(int seriesId) {
+    public void deleteById(Long seriesId) {
         tvSeriesRepo.deleteById(seriesId);
     }
-
     @Override
     public void Update(TVSeries series) {
         tvSeriesRepo.save(series);
@@ -66,6 +72,8 @@ public class TVSeriesServiceImpl implements TVSeriesService {
                 return null;
         }
     }
+
+
 
 
 }

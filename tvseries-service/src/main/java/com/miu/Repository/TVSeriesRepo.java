@@ -8,9 +8,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface TVSeriesRepo  extends CrudRepository<TVSeries , Integer> {
+public interface TVSeriesRepo  extends CrudRepository<TVSeries , Long> {
 
-    TVSeries findTVSeriesById(int seriesId);
+    TVSeries findTVSeriesById(Long seriesId);
     List<TVSeries> findAllByReleaseDate(LocalDate year);
     List<TVSeries> findAllByGenre(String genre);
     List<TVSeries> findAllByDirector(String director);

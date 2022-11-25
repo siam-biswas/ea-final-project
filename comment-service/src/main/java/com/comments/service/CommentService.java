@@ -2,6 +2,9 @@ package com.comments.service;
 
 import com.comments.entity.Comments;
 import com.comments.repository.CommentRepository;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
@@ -22,12 +25,12 @@ public class CommentService implements ICommentService {
 
     private final CircuitBreakerFactory circuitBreakerFactory;
 
-
     @Autowired
     public CommentService(CommentRepository commentRepository, CircuitBreakerFactory circuitBreakerFactory) {
         this.commentRepository = commentRepository;
         this.circuitBreakerFactory = circuitBreakerFactory;
     }
+
 
     @Override
     public Optional<Comments> getCommentsById(long id) {
@@ -60,5 +63,12 @@ public class CommentService implements ICommentService {
     @Override
     public Comments UpdateComment(Comments comments) {
         return commentRepository.save(comments);
+    }
+
+    @Override
+    @RabbitListener(queues = {"deleteSeries"})
+    public void DeleteAllBySeriesId(Long seriesId) {
+        commentRepository.deleteById(seriesId);
+        System.out.println(seriesId);
     }
 }

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Data
 public class MovieDTO {
 
-    int id;
+    Long id;
 
     String Title;
     int durationInMinutes;

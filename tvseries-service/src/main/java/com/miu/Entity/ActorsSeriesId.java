@@ -5,6 +5,6 @@ import java.io.Serializable;
 
 @Embeddable
 public class ActorsSeriesId  implements Serializable {
-    int seriesId;
-    int actorId;
+    Long seriesId;
+    Long actorId;
 }

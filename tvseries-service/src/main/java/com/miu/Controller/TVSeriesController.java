@@ -12,27 +12,31 @@ import java.util.List;
 @RequestMapping("/tvseries")
 @RestController
 public class TVSeriesController {
-    @Autowired
+    private final
     TVSeriesServiceImpl tvSeriesService;
 
+    public TVSeriesController(TVSeriesServiceImpl tvSeriesService) {
+        this.tvSeriesService = tvSeriesService;
+    }
+
     @PostMapping
-    public void addMovie(@RequestParam TVSeries series){
+    public void addMovie(@RequestParam TVSeries series) {
         tvSeriesService.addTVSeries(series);
     }
 
     @PutMapping
-    public void updateMovie(@RequestParam TVSeries series){
+    public void updateMovie(@RequestParam TVSeries series) {
         tvSeriesService.Update(series);
     }
 
-    @DeleteMapping
-    public void delete(@RequestParam int seriesId){
-        tvSeriesService.deleteById(seriesId);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        tvSeriesService.deleteById(id);
     }
 
-    @GetMapping("findbyid")
-    public TVSeries getMovieById(int seriesId){
-        return  tvSeriesService.findById(seriesId);
+    @GetMapping("/{id}")
+    public TVSeries getMovieById(@PathVariable Long id) {
+        return tvSeriesService.findById(id);
     }
 
     @GetMapping("filter")

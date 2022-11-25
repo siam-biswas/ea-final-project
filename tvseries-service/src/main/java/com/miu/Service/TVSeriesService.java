@@ -6,8 +6,8 @@ import com.miu.Enum.FilterType;
 import java.util.List;
 
 public interface TVSeriesService {
-    TVSeries findById(int seriesId);
-    void deleteById(int seriesId);
+    TVSeries findById(Long seriesId);
+    void deleteById(Long seriesId);
     void Update(TVSeries series);
     void addTVSeries(TVSeries series);
     List<TVSeries> filterSeries(FilterType filterType , String value);

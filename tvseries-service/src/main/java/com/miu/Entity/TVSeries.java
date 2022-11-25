@@ -15,7 +15,7 @@ public class TVSeries {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    Long id;
 
     String title;
     int numberOfSeasons;
