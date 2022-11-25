@@ -1,7 +1,7 @@
-FROM openjdk:19
+FROM openjdk:17
 LABEL MAINTAINER="MIU"
 LABEL APPLICATION="rating-service"
 WORKDIR ./
-COPY target/rating-0.0.1-SNAPSHOT.jar rating-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","rating-0.0.1-SNAPSHOT.jar"]
-EXPOSE 8080
+COPY target/rating-service.jar rating-service.jar
+ENTRYPOINT ["java","-jar","rating-service.jar"]
+EXPOSE 8090

@@ -9,7 +9,9 @@
     <artifactId>rating-service</artifactId>
     <name>Archetype - rating-service</name>
     <url>http://maven.apache.org</url>
-
+    <build>
+        <finalName>rating-service</finalName>
+    </build>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
