@@ -9,7 +9,9 @@
     <artifactId>authentication-service</artifactId>
     <name>Archetype - authentication-service</name>
     <url>http://maven.apache.org</url>
-
+    <build>
+        <finalName>authentication-service</finalName>
+    </build>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

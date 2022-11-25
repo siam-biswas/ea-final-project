@@ -9,6 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <finalName>comment-service</finalName>
+    </build>
+
     <artifactId>comment-service</artifactId>
     <dependencies>
         <dependency>
@@ -84,7 +94,6 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
 
 
 </project>

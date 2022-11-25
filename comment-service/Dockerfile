@@ -1,7 +1,7 @@
-FROM openjdk:19
+FROM openjdk:17
 LABEL MAINTAINER="MIU"
 LABEL APPLICATION="comment-service"
 WORKDIR ./
-COPY target/user-0.0.1-SNAPSHOT.jar user-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","user-0.0.1-SNAPSHOT.jar"]
-EXPOSE 8082
+ADD target/comment-service.jar comment-service.jar
+ENTRYPOINT ["java","-jar","comment-service.jar"]
+EXPOSE 8092
