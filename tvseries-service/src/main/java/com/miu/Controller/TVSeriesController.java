@@ -44,7 +44,7 @@ public class TVSeriesController {
         return tvSeriesService.filterSeries(filterType, value);
     }
     @GetMapping("finallseries")
-    public TVSeries getAllTVSeries() {
+    public List<TVSeries> getAllTVSeries() {
         return tvSeriesService.findAllSeries();
     }
 
