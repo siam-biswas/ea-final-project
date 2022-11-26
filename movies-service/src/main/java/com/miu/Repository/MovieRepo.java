@@ -18,4 +18,6 @@ public interface MovieRepo extends CrudRepository<Movie, Integer> {
 
     List<Movie> findAllByReleaseDate(LocalDate year);
 
+    List<Movie> findAll();
+
 }
