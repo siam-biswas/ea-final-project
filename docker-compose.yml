@@ -1,36 +1,135 @@
-version: '3.4'
+version: '3.9'
 services:
-  api-gateway:
-    build:
-      context: ./api-gateway
-    ports:
-      - "4848:4848"
-    restart: on-failure
-    environment:
-      - eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/
-      - keycloak-client.server-url=http://localhost:18080/auth
-    depends_on:
-      - discovery-service
   discovery-service:
     build:
       context: ./discovery-service
     ports:
       - "8761:8761"
     restart: on-failure
+
+  comment-postgres:
+    container_name: comment-database-container
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: comment-data
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+    ports:
+      - "6060:5432"
+    restart: unless-stopped
+
+  movie-postgres:
+    container_name: movie-container
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: movie-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+    ports:
+      - "6061:5432"
+    restart: unless-stopped
+
+  rating-postgres:
+    container_name: rating-container
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: rating-data
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+    ports:
+      - "6062:5432"
+    restart: unless-stopped
+
+  series-postgres:
+    container_name: series-container
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: tvseries-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+    ports:
+      - "6063:5432"
+    restart: unless-stopped
+
+  user-postgres:
+    container_name: user-container
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: user-data
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+    ports:
+      - "6064:5432"
+    restart: unless-stopped
+
+  comment-service:
+    build:
+      context: ./
+      dockerfile: comment-service/Dockerfile
+    image: comment-image
+    container_name: comment-container
+    ports:
+      - "8092:8092"
+    depends_on:
+      - comment-postgres
+      - discovery-service
+    restart: unless-stopped
+
   user-service:
     build:
       context: ./user-service
     ports:
-      - "8081:8081"
+      - "8091:8091"
     restart: on-failure
     environment:
       - eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/
       - keycloak-client.server-url=http://localhost:18080/auth
     depends_on:
       - discovery-service
+      - user-postgres
+
   rating-service:
     build:
       context: ./rating-service
+    ports:
+      - "8090:8090"
+    restart: on-failure
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/
+      - keycloak-client.server-url=http://localhost:18080/auth
+    depends_on:
+      - discovery-service
+      - rating-postgres
+
+  movie-service:
+    build:
+      context: ./
+      dockerfile: movies-service/Dockerfile
+    image: movies-image
+    container_name: movies-container
+    ports:
+      - "8093:8093"
+    depends_on:
+      - movie-postgres
+      - discovery-service
+    restart: unless-stopped
+
+  series-service:
+    build:
+      context: ./
+      dockerfile: tvseries-service/Dockerfile
+    image: series-image
+    container_name: series-container
+    ports:
+      - "8094:8094"
+    depends_on:
+      - series-postgres
+      - discovery-service
+    restart: unless-stopped
+
+  api-gateway:
+    build:
+      context: ./api-gatway
     ports:
       - "8089:8089"
     restart: on-failure
@@ -39,38 +138,3 @@ services:
       - keycloak-client.server-url=http://localhost:18080/auth
     depends_on:
       - discovery-service
-  keycloak:
-    image: jboss/keycloak:11.0.0
-    volumes:
-      - ./authentication-service/realm-export.json:/tmp/keycloak/config/realm-export.json
-    environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
-      KEYCLOAK_IMPORT: /tmp/keycloak/config/realm-export.json
-      DB_VENDOR: POSTGRES
-      DB_ADDR: postgres
-      DB_DATABASE: keycloak
-      DB_USER: keycloak
-      DB_SCHEMA: public
-      DB_PASSWORD: password
-    ports:
-      - "18080:18080"
-    command:
-      - "-b"
-      - "0.0.0.0"
-      - "-Djboss.socket.binding.port-offset=10000"
-    restart: on-failure
-    depends_on:
-      - postgres
-  postgres:
-    image: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: password
-volumes:
-  postgres_data:
-    name: keycloak_postgres_data
-    driver: local

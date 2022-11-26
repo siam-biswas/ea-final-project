@@ -68,7 +68,7 @@ public class CommentService implements ICommentService {
     @Override
     @RabbitListener(queues = {"deleteSeries"})
     public void DeleteAllBySeriesId(Long seriesId) {
-        commentRepository.deleteById(seriesId);
+        commentRepository.deleteAllBySeriesId(seriesId);
         System.out.println(seriesId);
     }
 }
