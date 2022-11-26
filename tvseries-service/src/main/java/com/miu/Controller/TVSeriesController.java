@@ -43,6 +43,9 @@ public class TVSeriesController {
     List<TVSeries> filterBy(@RequestParam FilterType filterType, @RequestParam String value) {
         return tvSeriesService.filterSeries(filterType, value);
     }
-
+    @GetMapping("finallseries")
+    public TVSeries getAllTVSeries() {
+        return tvSeriesService.findAllSeries();
+    }
 
 }

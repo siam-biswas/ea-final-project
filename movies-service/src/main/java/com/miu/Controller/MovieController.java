@@ -44,4 +44,9 @@ public class MovieController {
     List<Movie> filterBy(@RequestParam FilterType filterType, @RequestParam String value) {
         return movieService.filterMovie(filterType, value);
     }
+
+    @GetMapping("getallmovies")
+    List<Movie> getAllMovies() {
+        return movieService.findAll();
+    }
 }
