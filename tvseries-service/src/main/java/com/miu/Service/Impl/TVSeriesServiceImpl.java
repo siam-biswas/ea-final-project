@@ -73,7 +73,10 @@ public class TVSeriesServiceImpl implements TVSeriesService {
         }
     }
 
-
+    @Override
+    public List<TVSeries> findAllSeries() {
+        return tvSeriesRepo.findAll();
+    }
 
 
 }

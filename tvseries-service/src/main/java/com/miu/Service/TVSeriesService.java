@@ -12,5 +12,7 @@ public interface TVSeriesService {
     void addTVSeries(TVSeries series);
     List<TVSeries> filterSeries(FilterType filterType , String value);
 
+    List<TVSeries> findAllSeries();
+
 
 }
