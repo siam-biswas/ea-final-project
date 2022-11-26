@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1
     ports:
-      - 6060:5432
+      - "6060:5432"
     restart: unless-stopped
 
   movie-postgres:
@@ -19,7 +19,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1
     ports:
-      - 6061:5432
+      - "6061:5432"
     restart: unless-stopped
 
   rating-postgres:
@@ -30,7 +30,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1
     ports:
-      - 6062:5432
+      - "6062:5432"
     restart: unless-stopped
 
   series-postgres:
@@ -41,7 +41,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1
     ports:
-      - 6063:5432
+      - "6063:5432"
     restart: unless-stopped
 
   user-postgres:
@@ -52,7 +52,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1
     ports:
-      - 6064:5432
+      - "6064:5432"
     restart: unless-stopped
 
   comment-service:
@@ -62,7 +62,7 @@ services:
     image: comment-image
     container_name: comment-container
     ports:
-      - 8092:8092
+      - "8092:8092"
     depends_on:
       - comment-postgres
       - discovery-service
@@ -101,7 +101,7 @@ services:
     image: movies-image
     container_name: movies-container
     ports:
-      - 8093:8093
+      - "8093:8093"
     depends_on:
       - movie-postgres
       - discovery-service
@@ -114,7 +114,7 @@ services:
     image: series-image
     container_name: series-container
     ports:
-      - 8094:8094
+      - "8094:8094"
     depends_on:
       - series-postgres-postgres
       - discovery-service
