@@ -7,10 +7,7 @@ import com.miu.ratingservice.entity.ContentType;
 import com.miu.ratingservice.entity.Ratings;
 import com.miu.ratingservice.service.RatingService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
