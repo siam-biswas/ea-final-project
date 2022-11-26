@@ -19,8 +19,6 @@ public class Users implements Identifiable{
     private String lastName;
     private String email;
     private String phone;
-
-    @JsonIgnore
     private String password;
 
     @Override

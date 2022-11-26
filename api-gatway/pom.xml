@@ -38,6 +38,7 @@
             <artifactId>spring-boot-starter-oauth2-client</artifactId>
         </dependency>
 
+
     </dependencies>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

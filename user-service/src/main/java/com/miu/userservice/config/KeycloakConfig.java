@@ -10,9 +10,9 @@ import javax.ws.rs.client.ClientBuilder;
 public class KeycloakConfig {
 
     static Keycloak keycloak = null;
-    final static String serverUrl = "http://localhost:8099/";
-    public final static String realm = "miu";
-    final static String clientId = "authentication";
+    final static String serverUrl = "http://localhost:8099/auth";
+    public final static String realm = "master";
+    final static String clientId = "admin-cli";
     final static String clientSecret = "abcdefghijkl";
     final static String userName = "admin";
     final static String password = "admin";
@@ -24,8 +24,6 @@ public class KeycloakConfig {
     public static Keycloak getInstance(){
         if(keycloak == null){
 
-            var builder = ClientBuilder.newClient();
-
             keycloak = KeycloakBuilder.builder()
                     .serverUrl(serverUrl)
                     .realm(realm)
@@ -33,8 +31,9 @@ public class KeycloakConfig {
                     .username(userName)
                     .password(password)
                     .clientId(clientId)
-                    .clientSecret(clientSecret)
-                    .resteasyClient(builder)
+                    .resteasyClient(new ResteasyClientBuilder()
+                            .connectionPoolSize(10)
+                            .build())
                     .build();
         }
         return keycloak;

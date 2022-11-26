@@ -2,7 +2,6 @@ package com.miu.userservice.service;
 
 import com.miu.userservice.config.Credentials;
 import com.miu.userservice.config.KeycloakConfig;
-import com.miu.userservice.entity.Identifiable;
 import com.miu.userservice.entity.Users;
 import lombok.AllArgsConstructor;
 import org.keycloak.admin.client.resource.UsersResource;
