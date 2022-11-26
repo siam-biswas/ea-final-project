@@ -1,5 +1,12 @@
 version: '3.9'
 services:
+  discovery-service:
+    build:
+      context: ./discovery-service
+    ports:
+      - "8761:8761"
+    restart: on-failure
+
   comment-postgres:
     container_name: comment-database-container
     image: postgres:latest
@@ -116,13 +123,13 @@ services:
     ports:
       - "8094:8094"
     depends_on:
-      - series-postgres-postgres
+      - series-postgres
       - discovery-service
     restart: unless-stopped
 
   api-gateway:
     build:
-      context: ./api-gateway
+      context: ./api-gatway
     ports:
       - "8089:8089"
     restart: on-failure
@@ -131,10 +138,3 @@ services:
       - keycloak-client.server-url=http://localhost:18080/auth
     depends_on:
       - discovery-service
-
-  discovery-service:
-    build:
-      context: ./discovery-service
-    ports:
-      - "8761:8761"
-    restart: on-failure
