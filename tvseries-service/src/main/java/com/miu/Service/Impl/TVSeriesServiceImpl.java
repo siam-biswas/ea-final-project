@@ -31,12 +31,12 @@ public class TVSeriesServiceImpl implements TVSeriesService {
 
     @Override
     public TVSeries findById(Long seriesId) {
-        rabbitTemplate.convertAndSend("deleteSeries",seriesId);
         return tvSeriesRepo.findTVSeriesById(seriesId);
     }
 
     @Override
     public void deleteById(Long seriesId) {
+        rabbitTemplate.convertAndSend("deleteSeries",seriesId);
         tvSeriesRepo.deleteById(seriesId);
     }
     @Override
