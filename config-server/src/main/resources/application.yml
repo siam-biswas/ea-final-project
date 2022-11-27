@@ -1,6 +1,7 @@
 spring:
   application:
     name: config-service
+
   cloud:
     config:
       server:
@@ -8,5 +9,9 @@ spring:
           uri: https://github.com/Mkiwanz/git-config-repo
           default-label: main
           skip-ssl-validation: true
+          search-paths: configs
+
+
+
 server:
   port: 8888
