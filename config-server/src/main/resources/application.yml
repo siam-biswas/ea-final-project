@@ -6,7 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Mkiwanz/git-config-repo
+          uri: https://github.com/siam-biswas/ea-final-project
           default-label: main
           skip-ssl-validation: true
           search-paths: configs
