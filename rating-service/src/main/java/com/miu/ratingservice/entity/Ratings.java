@@ -15,8 +15,6 @@ public class Ratings implements Identifiable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @JsonIgnore
     private Long userId;
 
     @Embedded

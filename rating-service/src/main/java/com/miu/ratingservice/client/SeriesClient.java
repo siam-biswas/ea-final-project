@@ -13,10 +13,10 @@ import java.util.List;
 @FeignClient(name = "TVSERIES-SERVICE")
 public interface SeriesClient {
 
-    @GetMapping("/tvseries")
+    @GetMapping("/tvseries/finallseries")
     List<SeriesDTO> getAll();
 
-    @GetMapping("/tvseries")
-    SeriesDTO get(@RequestParam(value = "seriesId") int id);
+    @GetMapping("/tvseries/{id}")
+    SeriesDTO get(@PathVariable(name = "id") Long id);
 
 }

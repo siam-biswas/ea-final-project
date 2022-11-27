@@ -8,6 +8,6 @@ import java.io.Serializable;
 @Data
 public class Content implements Serializable {
 
-    private int contentId;
+    private Long contentId;
     private ContentType contentType;
 }

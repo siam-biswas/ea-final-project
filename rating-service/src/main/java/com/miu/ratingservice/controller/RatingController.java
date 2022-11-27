@@ -37,7 +37,7 @@ public class RatingController extends CrudController<Ratings, RatingService> {
             value.setUser(user);
 
             if (value.getContent().getContentType() == ContentType.movie){
-                var movie = movieClient.get(value.getContent().getContentId());
+                var movie = movieClient.get(value.getContent().getContentId().intValue());
                 value.setMovie(movie);
             }
 
@@ -62,7 +62,7 @@ public class RatingController extends CrudController<Ratings, RatingService> {
             value.setUser(user);
 
             if (value.getContent().getContentType() == ContentType.movie){
-                var movie = movieClient.get(value.getContent().getContentId());
+                var movie = movieClient.get(value.getContent().getContentId().intValue());
                 value.setMovie(movie);
             }
 

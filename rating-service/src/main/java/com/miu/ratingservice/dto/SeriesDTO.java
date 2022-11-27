@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Data
 public class SeriesDTO {
-    int id;
+    Long id;
 
     String title;
     int numberOfSeasons;
