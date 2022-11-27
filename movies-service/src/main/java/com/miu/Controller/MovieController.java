@@ -21,12 +21,12 @@ public class MovieController {
 
 
     @PostMapping
-    public void addMovie(@RequestParam Movie movie) {
+    public void addMovie(@RequestBody Movie movie) {
         movieService.addMovie(movie);
     }
 
     @PutMapping
-    public void updateMovie(@RequestParam Movie movie) {
+    public void updateMovie(@RequestBody Movie movie) {
         movieService.Update(movie);
     }
 
