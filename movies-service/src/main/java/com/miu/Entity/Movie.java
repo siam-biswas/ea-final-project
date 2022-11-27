@@ -3,10 +3,11 @@ package com.miu.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-
 
 
 @Data
@@ -15,7 +16,7 @@ import java.util.List;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String Title;
@@ -26,6 +27,7 @@ public class Movie {
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
     @JsonIgnore
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     List<ActorsMovies> actorsMovies;
 
 }

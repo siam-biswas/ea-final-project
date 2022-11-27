@@ -1,7 +1,7 @@
-insert into movies (id, title, director, duration_in_minutes, genre, release_date)
-values (1,'The Shawshank Redemption','Frank Darabont',162, 'Drama' ,'1994-09-10');
-insert into movies (id, title, director, duration_in_minutes, genre, release_date)
-values (2,'The Dark Knight','Christopher Nolan',153,'Action','2007-07-14');
+insert into movies ( title, director, duration_in_minutes, genre, release_date)
+values ('The Shawshank Redemption','Frank Darabont',162, 'Drama' ,'1994-09-10');
+insert into movies ( title, director, duration_in_minutes, genre, release_date)
+values ('The Dark Knight','Christopher Nolan',153,'Action','2007-07-14');
 
 
 insert into actor (id, first_name, last_name)

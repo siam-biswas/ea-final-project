@@ -20,12 +20,12 @@ public class TVSeriesController {
     }
 
     @PostMapping
-    public void addMovie(@RequestParam TVSeries series) {
+    public void addMovie(@RequestBody TVSeries series) {
         tvSeriesService.addTVSeries(series);
     }
 
     @PutMapping
-    public void updateMovie(@RequestParam TVSeries series) {
+    public void updateMovie(@RequestBody TVSeries series) {
         tvSeriesService.Update(series);
     }
 
