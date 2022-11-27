@@ -1,0 +1,831 @@
+{
+	"info": {
+		"_postman_id": "61207c3c-55b6-42fa-a316-9ef2832ede8c",
+		"name": "EA Final Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8974004"
+	},
+	"item": [
+		{
+			"name": "User Service",
+			"item": [
+				{
+					"name": "Retrive Access Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "X-CSRF-TOKEN",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/authentication/accesstoken",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"authentication",
+								"accesstoken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"nsRahman\",\n    \"firstName\": \"NS\",\n    \"lastName\": \"Rahman\",\n    \"email\": \"nsr@miu.edu\",\n    \"phone\": \"641233000\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ2Q1RkV1Z6OGR5WWZWZkN2eFVEN3EzelNjZDIydm1wRk5QeXNjZXR2RHpnIn0.eyJleHAiOjE2Njk0ODk0MjMsImlhdCI6MTY2OTQ4NDAyMywianRpIjoiY2Y5YjNiZTYtOTc2Yi00YjhmLThkMGMtNmQ0ZDU1Mzg1OWJiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDk5L2F1dGgvcmVhbG1zL21pdSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJhNTQ2MTQ3MC0zM2ViLTRiMmQtODJkNC1iMDQ4NGU5NmFkN2YiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhdXRoZW50aWNhdGlvbiIsInNlc3Npb25fc3RhdGUiOiI5ZDgxMzJjNC1iMjgwLTQxOTUtOWQwYi1lMzcyMjk3MDVhNGMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4OSJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInNpZCI6IjlkODEzMmM0LWIyODAtNDE5NS05ZDBiLWUzNzIyOTcwNWE0YyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiam9obkB0ZXN0LmNvbSJ9.B-ohz_8s_cQ3C6hY0Pkz8uop28ZKFwJV-pYEQB9b4oIZPitNneq_J4Cwdpp8C9OxGOPNvZSj9Adz__JwuB5K_J9qLqVtGSj2XHmcs26sqjUY8ZHTQCEpxbZnr8aOyokqONRkKaKn9C9DADtL5hM1uvqqWdL-19V8qdCulsuFpcJO4BVbQFiAL-coGu6qONWtnBf7gqwqiBZVOwINsxC5JwcaVeH1EyirPMxkjSlrq9e1S6FKUzRme27RbEHdUJz_PRwbcJvtFuap1bkF8XOQvRyvRntGfBeSAoqOo0tlc1CSymJ9Qoq_cTT1JzDmYY_GD2F4ksTvzCyoFYEVWJV-TA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"nsRahman\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"userName\": \"nsRahman\",\n    \"firstName\": \"NS\",\n    \"lastName\": \"Rahman\",\n    \"email\": \"nsr@miu.edu\",\n    \"phone\": \"641233001\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Favorites",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/favorites",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Favorite",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"content\": {\n            \"contentId\": 1,\n            \"contentType\": \"movie\"\n        },\n        \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/favorites",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Favorite",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\" : 1,\n        \"content\": {\n            \"contentId\": 1,\n            \"contentType\": \"movie\"\n        },\n        \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/favorites",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Favorite",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/favorites/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"favorites",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rating Service",
+			"item": [
+				{
+					"name": "Get Ratings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ratings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ratings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Rating",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ratings/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ratings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Rating",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 1,\n    \"content\" : {\n         \"contentId\": 2,\n         \"contentType\": 1\n    },\n    \"value\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ratings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ratings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Rating",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"userId\": 1,\n    \"content\" : {\n         \"contentId\": 2,\n         \"contentType\": 1\n    },\n    \"value\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ratings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ratings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Rating",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ratings/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ratings",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment Service",
+			"item": [
+				{
+					"name": "Get Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comments/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comments",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"comment\": \"movie 2 is bad\",\n    \"userId\": 1,\n    \"content\": {\n        \"contentId\": 1,\n        \"contentType\": \"series\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comments/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comments",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comments/delete/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comments",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comment\": \"movie 2 is bad\",\n    \"userId\": 1,\n    \"content\": {\n        \"contentId\": 1,\n        \"contentType\": \"series\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comments/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comments",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movie Service",
+			"item": [
+				{
+					"name": "Get Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/movies/getallmovies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies",
+								"getallmovies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/movies/getbyid?movieId=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies",
+								"getbyid"
+							],
+							"query": [
+								{
+									"key": "movieId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/movies/filter?filterType=ACTOR&value=Morgan",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "filterType",
+									"value": "ACTOR"
+								},
+								{
+									"key": "value",
+									"value": "Morgan"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Movie",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": 1,\n        \"durationInMinutes\": 162,\n        \"genre\": \"Drama\",\n        \"director\": \"Frank Darabont\",\n        \"releaseDate\": \"1994-09-10\",\n        \"title\": \"The Shawshank Redemption\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/movies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/movies?movieId=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "movieId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"durationInMinutes\": 162,\n        \"genre\": \"Drama\",\n        \"director\": \"Frank Darabont\",\n        \"releaseDate\": \"1994-09-10\",\n        \"title\": \"The Shawshank Redemption\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/movies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Series Service",
+			"item": [
+				{
+					"name": "Get Serieses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tvseries/finallseries",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tvseries",
+								"finallseries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Series",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tvseries/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tvseries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Seriess",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tvseries/filter?filterType=DIRECTOR&value=Woody Allen",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tvseries",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "filterType",
+									"value": "DIRECTOR"
+								},
+								{
+									"key": "value",
+									"value": "Woody Allen"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Series",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": 1,\n        \"durationInMinutes\": 162,\n        \"genre\": \"Drama\",\n        \"director\": \"Frank Darabont\",\n        \"releaseDate\": \"1994-09-10\",\n        \"title\": \"The Shawshank Redemption\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tvseries",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tvseries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Series",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tvseries/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tvseries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Series",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"title\": \"Annie Hall\",\n        \"numberOfSeasons\": 2,\n        \"numberOfEpisodes\": 15,\n        \"durationInMinutes\": 150,\n        \"genre\": \"Action\",\n        \"director\": \"Woody Allen\",\n        \"releaseDate\": \"2002-12-23\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tvseries",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tvseries"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "commonPath",
+			"value": "api/v1",
+			"type": "string"
+		},
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8089",
+			"type": "string"
+		}
+	]
+}
