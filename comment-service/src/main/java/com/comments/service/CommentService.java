@@ -1,6 +1,7 @@
 package com.comments.service;
 
 import com.comments.entity.Comments;
+import com.comments.entity.Content;
 import com.comments.repository.CommentRepository;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -40,10 +41,12 @@ public class CommentService implements ICommentService {
     @Override
     public List<Comments> getAllComments() {
 
-        RestTemplate restTemplate = new RestTemplate();
-        CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
-        String url = "https://jsonplaceholder.typicode.com/posts/1/comments";
-        return Collections.singletonList(circuitBreaker.run(() -> restTemplate.getForObject(url, Comments.class), throwable -> getDefaultComment()));
+        return commentRepository.findAll();
+
+//        RestTemplate restTemplate = new RestTemplate();
+//        CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
+//        String url = "https://jsonplaceholder.typicode.com/posts/1/comments";
+//        return Collections.singletonList(circuitBreaker.run(() -> restTemplate.getForObject(url, Comments.class), throwable -> getDefaultComment()));
     }
 
     private Comments getDefaultComment() {
@@ -65,10 +68,4 @@ public class CommentService implements ICommentService {
         return commentRepository.save(comments);
     }
 
-    @Override
-    @RabbitListener(queues = {"deleteSeries"})
-    public void DeleteAllBySeriesId(Long seriesId) {
-        commentRepository.deleteAllBySeriesId(seriesId);
-        System.out.println(seriesId);
-    }
 }

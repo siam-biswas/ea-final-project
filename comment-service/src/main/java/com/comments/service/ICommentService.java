@@ -17,5 +17,4 @@ public interface ICommentService {
 
     Comments UpdateComment(Comments comments);
 
-    void DeleteAllBySeriesId(Long id);
 }

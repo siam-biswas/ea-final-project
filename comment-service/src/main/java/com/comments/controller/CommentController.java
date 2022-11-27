@@ -31,11 +31,12 @@ public class CommentController {
     @GetMapping
     public ResponseEntity<List<Comments>> getAllComments() {
         var result = service.getAllComments().stream().map(value -> {
+
             var user = userClient.get(value.getUserId());
             value.setUser(user);
 
             if (value.getContent().getContentType() == ContentType.movie) {
-                var movie = movieClient.get(value.getContent().getContentId());
+                var movie = movieClient.get(value.getContent().getContentId().intValue());
                 value.setMovie(movie);
             }
 
@@ -59,7 +60,7 @@ public class CommentController {
             value.setUser(user);
 
             if (value.getContent().getContentType() == ContentType.movie) {
-                var movie = movieClient.get(value.getContent().getContentId());
+                var movie = movieClient.get(value.getContent().getContentId().intValue());
                 value.setMovie(movie);
             }
 
@@ -85,7 +86,7 @@ public class CommentController {
             value.setUser(user);
 
             if (value.getContent().getContentType() == ContentType.movie) {
-                var movie = movieClient.get(value.getContent().getContentId());
+                var movie = movieClient.get(value.getContent().getContentId().intValue());
                 value.setMovie(movie);
             }
 
@@ -108,14 +109,14 @@ public class CommentController {
         service.DeleteComment(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping ("/update")
     public ResponseEntity<Object> UpdateComment(@RequestBody Comments comments) {
         Optional<Comments> data = Optional.ofNullable(service.UpdateComment(comments)).map(value -> {
             var user = userClient.get(value.getUserId());
             value.setUser(user);
 
             if (value.getContent().getContentType() == ContentType.movie) {
-                var movie = movieClient.get(value.getContent().getContentId());
+                var movie = movieClient.get(value.getContent().getContentId().intValue());
                 value.setMovie(movie);
             }
 

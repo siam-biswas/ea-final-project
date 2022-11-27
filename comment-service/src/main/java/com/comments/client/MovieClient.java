@@ -12,10 +12,10 @@ import java.util.List;
 @FeignClient(name = "MOVIE-SERVICE")
 public interface MovieClient {
 
-    @GetMapping("/movies")
+    @GetMapping("/movies/getallmovies")
     List<MovieDTO> getAll();
 
-    @GetMapping("/movies")
+    @GetMapping("/movies/getbyid")
     MovieDTO get(@RequestParam(value = "movieId") int id);
 
 }

@@ -14,19 +14,13 @@ import javax.persistence.*;
 @Data
 public class Comments {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String comment;
-
     private Long userId;
-
-    private Long movieId;
-
-    private Long seriesId;
 
     @Embedded
     private Content content;
-    private Integer value;
 
     @Transient
     private UserDTO user;
