@@ -15,7 +15,6 @@ public class Favorite implements Identifiable{
     @Embedded
     private Content content;
 
-    @ManyToOne
-    private Users user;
+    private Long user_id;
 
 }

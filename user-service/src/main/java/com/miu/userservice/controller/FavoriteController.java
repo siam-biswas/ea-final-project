@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/v1/users/favorites")
+@RequestMapping("/users/favorites")
 public class FavoriteController extends CrudController<Favorite, FavoriteService> {
 
 
     public FavoriteController(FavoriteService service) {
         super(service);
     }
-
 
 }
